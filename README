@@ -1,5 +1,8 @@
 ZFKit - Zend Framework Starter Kit
 ==================================
+Original code - copyright (c)2010 Michael Kimsal
+All other code copyright by the respective projects
+
 ZFKit provides a basic skeleton for bringing 
 together doctrine, phpunit and zend framework in one 
 'ready to go' set up.
@@ -18,5 +21,6 @@ or
 cp -r /path/to/real/zendframework/library/Zend /path/to/zfkit/library/
 
 
-
-
+License
+=======
+ZFKit is released under a BSD license.

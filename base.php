@@ -4,8 +4,13 @@ defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/application'));
 
 // Define application environment
-defined('APPLICATION_ENV')
-    || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
+if(!defined('APPLICATION_ENV')) {
+	$value = trim(file_get_contents(dirname(__FILE__)."/servertype.txt"));
+	if($value=='') {
+		$value = 'development';
+	}
+	define('APPLICATION_ENV', $value);
+}
 
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(

@@ -11,6 +11,9 @@ Doctrine 1.2 is provided in the /library folder,
 but Zend Framework will need to be provided by you directly.
 You can symlink it in to /library or copy it directly.
 
+
+Getting started
+===============
 You'll need to symlink such that /library/Zend is pointing 
 at your /library from the ZendFramework installation.
 
@@ -19,6 +22,37 @@ ln -s /path/to/zfkit/library/Zend /path/to/real/zendframework/library/Zend
 or 
 
 cp -r /path/to/real/zendframework/library/Zend /path/to/zfkit/library/
+
+-------
+
+Make your web server virtual host point to the public/ folder of your 
+starter kit project.
+
+Something like this would be appropriate
+<VirtualHost *:80>
+	DocumentRoot "/path/to/git/checkout/of/zfkit/public"
+	ServerName <your_host_name_here>
+	Options Indexes MultiViews FollowSymLinks
+	<Directory "/path/to/git/checkout/of/zfkit">
+		Options Indexes MultiViews FollowSymLinks
+		AllowOverride All
+		Order allow,deny
+		Allow from all
+	</Directory>
+</VirtualHost>
+
+-------
+
+Go in to the scripts directory and run the ./run script
+This will automatically drop/create the database, create a schema
+and insert sample data, based on the Doctrine data in /application/data
+(specifically, the schema.yml and fixtures/data.yml files)
+
+-------
+
+Visit your hostname
+
+http://<your_host_name_here>/
 
 
 License

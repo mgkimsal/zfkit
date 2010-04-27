@@ -1,2 +1,22 @@
-Initial ZF starter kit import
+ZFKit - Zend Framework Starter Kit
+==================================
+ZFKit provides a basic skeleton for bringing 
+together doctrine, phpunit and zend framework in one 
+'ready to go' set up.
+
+Doctrine 1.2 is provided in the /library folder, 
+but Zend Framework will need to be provided by you directly.
+You can symlink it in to /library or copy it directly.
+
+You'll need to symlink such that /library/Zend is pointing 
+at your /library from the ZendFramework installation.
+
+ln -s /path/to/zfkit/library/Zend /path/to/real/zendframework/library/Zend
+
+or 
+
+cp -r /path/to/real/zendframework/library/Zend /path/to/zfkit/library/
+
+
+
 

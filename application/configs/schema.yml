@@ -1,0 +1,9 @@
+---
+detect_relations: true
+options:
+  collate: latin1_swedish_ci
+  charset: latin1
+  type: InnoDB
+
+#put sample yaml here
+

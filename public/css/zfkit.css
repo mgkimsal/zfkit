@@ -1,0 +1,35 @@
+/* ZFKit CSS */
+#hd {
+	padding: .3em;
+	background-color: #fff;
+	color: black;
+	border-bottom: thin solid #99c;
+	font-size: 1.3em;
+}
+
+#ft {
+	padding: .3em;
+	background-color: #fff;
+	color: black;
+	border-top: thin solid #99c;
+	font-size: 1.0em;
+}
+
+#menu {
+	float:left;
+	width: 10em;
+	min-height: 300px;
+}
+
+#name1 {
+	font-weight:bold;
+	color: red;
+}
+
+#name2 {
+	font-weight:bold;
+}
+
+#content {
+	min-height: 300px;
+}

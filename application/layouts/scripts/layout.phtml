@@ -1,4 +1,4 @@
-<?php echo $this->doctype() ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
     <?php echo $this->headTitle() ?>
@@ -6,10 +6,30 @@
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
     <?php echo $this->headScript() ?>
-	<meta charset="utf-8">
+   <link rel="stylesheet" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
+	<link rel="stylesheet" href="/css/zfkit.css" type="text/css" media="screen" /> 
 </head>
-	
-    <?php echo $this->layout()->content ?>
+<body>
+<div id="doc3" class="yui-t2">
+	<div id="hd" role="banner">
+		<span id="name1">ZF</span><span id="name2">Kit</span> - the zend framework starter kit
+	</div>
+	<div id="bd">
+			<div id="yui-main">
+					<div class="yui-b">
+							<div role="contentinfo" class="yui-g" id="content">
+								<?php echo $this->layout()->content ?>
+							</div>
+					</div>
+			</div>
+			<div id="menu" role="navigation" class="yui-b">
+			<h2>Menu</h2>
+			</div>
+	</div>
+	<div id="ft" role="contentinfo">
+		<p><a href="http://zfkit.com">zfkit.com</a></p>
+	</div>
+</div>
     <?php  echo $this->inlineScript() ?>
-
+</body>
 </html>

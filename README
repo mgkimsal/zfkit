@@ -4,18 +4,24 @@ Original code - copyright (c)2010 Michael Kimsal
 All other code copyright by the respective projects
 
 ZFKit provides a basic skeleton for bringing 
-together doctrine, phpunit and zend framework in one 
+together doctrine, phpunit and Zend Framework in one 
 'ready to go' set up.
 
-Doctrine 1.2 is provided in the /library folder, 
-but Zend Framework will need to be provided by you directly.
-You can symlink it in to /library or copy it directly.
+Doctrine 1.2 and ZF 1.10.5 are provided in the /library folder, 
 
 
 Getting started
 ===============
-You'll need to symlink such that /library/Zend is pointing 
-at your /library from the ZendFramework installation.
+ZF libraries are provided in a tgz format.  You'll need to untar/unzip
+them before starting.
+
+cd /path/to/zfkit/library
+tar -xzf Zend.tgz
+
+-or-
+
+If you want to provide your own ZF library, symlink or 
+copy the Zend library from ZF to live in the zfkit/library folder.
 
 ln -s /path/to/zfkit/library/Zend /path/to/real/zendframework/library/Zend
 
@@ -25,8 +31,8 @@ cp -r /path/to/real/zendframework/library/Zend /path/to/zfkit/library/
 
 -------
 
-Make your web server virtual host point to the public/ folder of your 
-starter kit project.
+You may wish to make your /public/ folder the document root 
+of a virtual host for nicer URLs.
 
 Something like this would be appropriate
 <VirtualHost *:80>
@@ -43,6 +49,7 @@ Something like this would be appropriate
 
 -------
 
+DB setup
 Go in to the scripts directory and run the ./run script
 This will automatically drop/create the database, create a schema
 and insert sample data, based on the Doctrine data in /application/data

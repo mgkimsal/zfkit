@@ -20,7 +20,10 @@ set_include_path(implode(PATH_SEPARATOR, array(
 )));
 
 /** Zend_Application */
-require_once 'Zend/Application.php';
+if(!@include_once( 'Zend/Application.php')) {
+	        die("Can't find the Zend/ library files - did you unzip the file in /library ?");
+}
+
 
 // Create application, bootstrap, and run
 $application = new Zend_Application(

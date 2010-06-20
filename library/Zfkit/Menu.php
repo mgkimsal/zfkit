@@ -1,12 +1,17 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: michael
- * Date: Jun 11, 2010
- * Time: 8:18:50 PM
- * To change this template use File | Settings | File Templates.
- */
 
-class Menu {
+/*
+class Zfkit_Menu extends Zend_Controller_Plugin_Abstract {
 
+
+    public function preDispatch(Zend_Controller_Request_Abstract $request)
+    {
+             
+    }
+
+    public function postDispatch(Zend_Controller_Request_Abstract $request)
+    {
+        echo $request->getControllerName();
+    }
 }
+*/

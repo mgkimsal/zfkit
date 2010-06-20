@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <nav>
+        <home>
+            <label>Home</label>
+            <controller>index</controller>
+            <action>index</action>
+				</home>
+				 <about>
+						 <label>About</label>
+						 <controller>index</controller>
+						 <action>about</action>
+				 </about>
+				 <contact>
+						 <label>Contact</label>
+						 <controller>index</controller>
+						 <action>contact</action>
+				 </contact>
+    </nav>
+</config>

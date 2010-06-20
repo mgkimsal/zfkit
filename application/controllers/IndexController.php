@@ -13,5 +13,14 @@ class IndexController extends Zend_Controller_Action
     {
     }
 	
+
+		public function aboutAction()
+		{
+		}
+
+
+		public function contactAction()
+		{
+		}
 }
 

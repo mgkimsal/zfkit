@@ -18,6 +18,24 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 	}
 
+	public function _initView()
+	{   
+		$view = new Zend_View();
+		$view->doctype('XHTML1_STRICT');
+		$view->env = APPLICATION_ENV;
+		$config = new Zend_Config_Xml(APPLICATION_PATH."/configs/menu.xml", "nav");
+		$nav = new Zend_Navigation($config);
+		$view->navigation($nav);
+		$render = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
+		$render->setView($view);
+		/*
+		$c = $nav->findAllByController('index');
+		$a = $nav->findAllByAction("index");
+		$found = array_intersect($c, $a);
+		 */
+		return $view;
+	} 
+
 /**
  * if you want true zend-framework 'rest'-style URLs
  * with all that entails, uncomment this method

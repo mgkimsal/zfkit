@@ -16,7 +16,8 @@
 }
 
 #menu {
-	float:left;
+	font-family: "Gill Sans", "Trebuchet","Verdana", "Sans Serif";
+    display:block;
 	width: 10em;
 	min-height: 300px;
 }
@@ -32,4 +33,24 @@
 
 #content {
 	min-height: 300px;
+}
+
+.navigation {
+    width: 100%;
+		font-size: 16px;
+}
+.navigation ul {
+    display:block;  
+}
+.navigation a {
+		cursor: hand;
+    text-decoration: none;
+    color: blue;
+}
+.navigation a {
+}
+.navigation .active {
+	text-decoration: underline;
+}
+.navigation li li a {
 }

@@ -16,5 +16,15 @@
 			<controller>index</controller>
 			<action>contact</action>
 		</contact>
+		<contact>
+			<label>Terms of Service</label>
+			<controller>index</controller>
+			<action>tos</action>
+		</contact>
+		<contact>
+			<label>Privacy Policy</label>
+			<controller>index</controller>
+			<action>privacy</action>
+		</contact>
 	</nav>
 </config>

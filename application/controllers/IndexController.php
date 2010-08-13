@@ -4,23 +4,30 @@ class IndexController extends Zend_Controller_Action
 {
 
 
-    public function init()
-    {
-        /* Initialize action controller here */
-    }
+	public function init()
+	{
+	  /* Initialize action controller here */
+	}
 
-    public function indexAction()
-    {
-    }
-	
-
-		public function aboutAction()
-		{
-		}
+	public function indexAction()
+	{
+	}
 
 
-		public function contactAction()
-		{
-		}
+	public function aboutAction()
+	{
+	}
+
+
+	public function contactAction()
+	{
+	}
+
+	public function tosAction()
+	{
+	}
+
+	public function privacyAction()
+	{
+	}
 }
-

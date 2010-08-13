@@ -26,6 +26,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$config = new Zend_Config_Xml(APPLICATION_PATH."/configs/menu.xml", "nav");
 		$nav = new Zend_Navigation($config);
 		$view->navigation($nav);
+		$view->addHelperPath('Zk/View/Helper', 'Zk_View_Helper');
 		$render = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
 		$render->setView($view);
 		/*

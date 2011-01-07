@@ -9,6 +9,10 @@ together doctrine, phpunit and Zend Framework in one
 
 Doctrine 1.2 and ZF 1.10.5 are provided in the /library folder, 
 
+Some code inspired and/or copied from
+http://akrabat.com/zend-auth-tutorial/
+http://zendcasts.com
+
 
 Getting started
 ===============

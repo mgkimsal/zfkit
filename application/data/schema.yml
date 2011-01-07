@@ -6,37 +6,24 @@ options:
   type: InnoDB
 
 #put sample yaml here
-Book:
+Account:
   columns:
     id:
       type: integer(4)
       primary: true
       notnull: true
       autoincrement: true
-    isbn:
-      type: string(20)
-    title:
-      type: string(20)
-    author_id:
-      type: integer(4)
-  relations:
-    author:
-      class: Author
-      local: author_id
-      foreign: id
-      foreignAlias: books
-
-
-Author:
-  columns:
-    id:
-      type: integer(4)
-      primary: true
-      notnull: true
-      autoincrement: true
-    firstName:
-      type: string(20)
-    lastName:
-      type: string(20)
+    username:
+      type: string(50)
+    password:
+      type: string(50)
+    email:
+      type: string(50)
+    name:
+      type: string(50)
+    company:
+      type: string(50)
+    created:
+      type: int(11)
 
 

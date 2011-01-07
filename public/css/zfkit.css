@@ -54,3 +54,11 @@
 }
 .navigation li li a {
 }
+
+#topname {
+	float:left;
+}
+#loggedin {
+	float:right;
+	font-size: 12px;
+}

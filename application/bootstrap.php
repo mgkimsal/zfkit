@@ -72,6 +72,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 Zend_Layout::getMvcInstance()->setLayout('layout_name');
 		
 		$view->layout()->setLayout($viewini->defaultlayout);
+		$view->theme = $viewini->bootstraptheme;
 		return $view;
 	} 
 

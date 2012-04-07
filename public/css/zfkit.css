@@ -1,0 +1,70 @@
+/* ZFKit CSS */
+#hd {
+	padding: .3em;
+	background-color: #fff;
+	color: black;
+	border-bottom: thin solid #99c;
+	font-size: 1.3em;
+}
+
+#ft {
+	padding: .3em;
+	background-color: #fff;
+	color: black;
+	border-top: thin solid #99c;
+	font-size: 1.0em;
+}
+
+#menu {
+	font-family: "Gill Sans", "Trebuchet","Verdana", "Sans Serif";
+    display:block;
+	width: 10em;
+	min-height: 300px;
+}
+
+#name1 {
+	font-weight:bold;
+	color: red;
+}
+
+#name2 {
+	font-weight:bold;
+}
+
+#content {
+	min-height: 300px;
+}
+
+.navigation {
+    width: 100%;
+		font-size: 16px;
+}
+.navigation ul {
+    display:block;  
+}
+.navigation a {
+		cursor: hand;
+    text-decoration: none;
+    color: blue;
+}
+.navigation a {
+}
+.navigation .active {
+	text-decoration: underline;
+}
+.navigation li li a {
+}
+.person
+{
+
+}
+img.personimage
+{
+	width:100px;
+}
+.textcenter
+{
+	text-align:center;
+	margin: 0 auto;
+}
+

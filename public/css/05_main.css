@@ -1,0 +1,59 @@
+.person
+{
+min-height: 120px;
+	clear:both;
+}
+.personimage {
+	float:left;
+	padding-right: 6px;
+	min-width:100px;
+}
+img.personimage
+{
+	width:100px;
+	min-width:100px;
+}
+.personinfo
+{
+	float:left;
+}
+.textcenter
+{
+	text-align:center;
+	margin: 0 auto;
+}
+
+.topinput
+{
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+.topform
+{
+    margin: 0px;
+}
+.zend_form
+{
+    float:left;
+}
+.zend_form label
+{
+    width: 10em;
+    text-align:right;
+}
+dt {
+    float:left;
+    clear:both;
+}
+dd {
+    float:left;
+}
+.centered
+{
+    margin: 0 auto;
+}
+.zend_form .errors
+{
+    list-style:none;
+    color:red;
+}

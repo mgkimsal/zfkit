@@ -51,6 +51,7 @@ dd {
 .centered
 {
     margin: 0 auto;
+    text-align:center;
 }
 .zend_form .errors
 {

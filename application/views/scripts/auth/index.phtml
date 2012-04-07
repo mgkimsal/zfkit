@@ -1,2 +1,10 @@
 <?php $this->headTitle('Login'); ?>
+<?php if ($e = $this->errors) { ?>
+    <?php foreach ($e as $error) { ?>
+        <div class="alert alert-error">
+            <a class="close" data-dismiss="alert"> x </a>
+            <?php echo $error;?>
+        </div>
+    <?php } ?>
+<?php } ?>
 <?php echo $this->form->setAction($this->url()); ?>

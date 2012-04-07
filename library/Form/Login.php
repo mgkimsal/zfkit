@@ -27,6 +27,7 @@ class Form_Login extends Zend_Form
         ));
 
         $this->addElement('submit', 'login', array(
+            'class'     => 'btn btn-primary',
             'required' => false,
             'ignore'   => true,
             'label'    => 'Login',

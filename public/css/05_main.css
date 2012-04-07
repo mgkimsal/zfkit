@@ -57,3 +57,7 @@ dd {
     list-style:none;
     color:red;
 }
+.loggedin
+{
+    margin-top: .8em;
+}

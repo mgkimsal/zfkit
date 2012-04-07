@@ -11,8 +11,10 @@
     <![endif]-->
 
     <!-- Le styles -->
-	<link rel="stylesheet" href="<?=$this->baseUrl();?>/css/<?=$this->theme;?>.bootstrap.min.css"/>
-	<link rel="stylesheet" href="<?=$this->baseUrl();?>/css/05_main.css"/>
+      <script src="<?=$this->baseUrl();?>js/jquery-1.7.2.min.js"></script>
+	<link rel="stylesheet" href="<?=$this->baseUrl();?>css/<?=$this->theme;?>.bootstrap.min.css"/>
+	<link rel="stylesheet" href="<?=$this->baseUrl();?>css/05_main.css"/>
+    <script src="<?=$this->baseUrl();?>js/bootstrap-alert.js"></script>
     <style type="text/css">
       body {
         padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
@@ -20,12 +22,6 @@
       
     </style>
 
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
   </head>
 
   <body>
@@ -43,8 +39,8 @@
             <input class="topinput input-small" type="text"  name="username" placeholder="Username">
 
             <input class="topinput input-small" type="password" name="password" placeholder="Password">
-            <input class="btn blacktext" name="topbtn" type="submit" value="Sign in"/>
-            <input class="btn blacktext" name="topbtn" type="submit" value="Register"/>
+            <input class="btn blacktext btn-info" name="topbtn" type="submit" value="Sign in"/>
+            <input class="btn blacktext btn-info" name="topbtn" type="submit" value="Register"/>
           </form>
 <?php else : ?>
 <div class="pull-right loggedin">
@@ -76,11 +72,13 @@ Welcome <?php echo $this->loggedInAs()->username; ?>
       </div>
 
       <footer>
-	  <p>&copy; fosterburgess <?=date("Y");?></p>
+	  <p>&copy; site <?=date("Y");?></p>
 
       </footer>
 
     </div> <!-- /container -->
-
+<script>
+    $(".alert").alert();
+</script>
   </body>
 </html>

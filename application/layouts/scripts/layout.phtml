@@ -1,36 +1,142 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-    <?php echo $this->headTitle() ?>
-    <?php echo $this->headMeta() ?>
-    <?php echo $this->allcss(); ?>
-</head>
-<body>
-<div id="doc3" class="yui-t2">
-	<div id="hd" role="banner">
-<div id="topname">
-		<span id="name1">ZF</span><span id="name2">Kit</span> - the zend framework starter kit
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+    <style type="text/css">
+      /* Override some defaults */
+      html, body {
+        background-color: #eee;
+      }
+      body {
+        padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+      }
+      .container > footer p {
+        text-align: center; /* center align it with the container */
+      }
+      .container {
+        width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+      }
+
+      /* The white background content wrapper */
+      .content {
+        background-color: #fff;
+        padding: 20px;
+        margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+        -webkit-border-radius: 0 0 6px 6px;
+           -moz-border-radius: 0 0 6px 6px;
+                border-radius: 0 0 6px 6px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+      }
+
+      /* Page header tweaks */
+      .page-header {
+        background-color: #f5f5f5;
+        padding: 20px 20px 10px;
+        margin: -20px -20px 20px;
+      }
+
+      /* Styles you shouldn't keep as they are for displaying this base example only */
+      .content .span11,
+      .content .span3 {
+        min-height: 500px;
+      }
+      /* Give a quick and non-cross-browser friendly divider */
+      .content .span11 {
+        margin-left: 0;
+        padding-left: 19px;
+        border-left: 1px solid #eee;
+      }
+
+      .topbar .btn {
+        border: 0;
+      color: black;
+      }
+      .loggedin 
+      {
+      	color: white;
+      	margin-top: .9em;
+		}
+      
+    </style>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">Project name</a>
+
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+<?php if(!$this->loggedIn()) : ?>
+          <form method="post" action="<?php echo $this->baseUrl();?>auth" class="pull-right">
+            <input class="topinput input-small" type="text"  name="username" placeholder="Username">
+
+            <input class="topinput input-small" type="password" name="password" placeholder="Password">
+            <input class="btn blacktext" name="topbtn" type="submit" value="Sign in"/>
+            <input class="btn blacktext" name="topbtn" type="submit" value="Register"/>
+          </form>
+<?php else : ?>
+<div class="pull-right loggedin">
+Welcome <?php echo $this->loggedInAs()->username; ?>
+ &nbsp; 
+<a href="<?php echo $this->baseUrl();?>auth/logout">Log out</a>
+<?php endif; ?>
 </div>
-<div id="loggedin">
-<?php echo $this->loggedInAs(); ?>
-</div>
-	</div>
-	<div id="bd">
-			<div id="yui-main">
-					<div class="yui-b">
-							<div role="contentinfo" class="yui-g" id="content">
-								<?php echo $this->layout()->content ?>
-							</div>
-					</div>
-			</div>
-			<div id="menu" role="navigation" class="yui-b">
-				<?php echo $this->navigation()->menu();?>
-			</div>
-	</div>
-	<div id="ft" role="contentinfo">
-		<p><a href="http://zfkit.com">zfkit.com</a></p>
-	</div>
-</div>
-    <?php  echo $this->inlineScript() ?>
-</body>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        <div class="page-header">
+          <h1><?php echo $this->pageTitle ?: "page"; ?> 
+          <small><?php echo $this->pageSubTitle ?: ""; ?> </small></h1>
+        </div>
+        <div class="row">
+          <div class="span3">
+
+          </div>
+          <div class="span11">
+
+<?php echo $this->layout()->content; ?>
+ 
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; Company 2011</p>
+
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
 </html>

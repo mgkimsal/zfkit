@@ -36,6 +36,7 @@ class Form_Register extends Zend_Form
         ));
 
         $this->addElement('submit', 'login', array(
+            'class'=>'btn btn-primary centered',
             'required' => false,
             'ignore'   => true,
             'label'    => 'Login',

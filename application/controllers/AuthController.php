@@ -38,6 +38,16 @@ class AuthController extends Zend_Controller_Action
         $this->_helper->redirector('index'); // back to login page
     }
 
+    public function forgotAction()
+    {
+
+    }
+
+    public function forgotprocessAction()
+    {
+
+    }
+
     protected function _process($values)
     {
     	$u = R::findOne('account', ' username=? and password=?', 

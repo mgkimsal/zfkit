@@ -58,19 +58,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view = new Zend_View();
 		$view->doctype('XHTML1_STRICT');
 		$view->env = APPLICATION_ENV;
-		$config = new Zend_Config_Xml(APPLICATION_PATH."/configs/menu.xml","nav");
-		$nav = new Zend_Navigation($config);
-		$view->navigation($nav);
 		$view->addHelperPath('Zk/View/Helper', 'Zk_View_Helper');
 		$render = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
 		$render->setView($view);
 
 		$viewini = new Zend_Config_Ini(APPLICATION_PATH."/configs/application.ini","view");
 		
-         Zend_Layout::startMvc();
-		
-Zend_Layout::getMvcInstance()->setLayout('layout_name');
-		
+        Zend_Layout::startMvc();
+
 		$view->layout()->setLayout($viewini->defaultlayout);
 		$view->theme = $viewini->bootstraptheme;
 		return $view;

@@ -8,9 +8,9 @@ class AuthController extends Zend_Controller_Action
 
 	public function init()
 	{
+        parent::_init();
 		$this->view->pageTitle = "Log in";
 		$this->view->pageSubTitle = "";
-        $this->_config = Zend_Registry::get("config");
 	}
 	
     public function indexAction()

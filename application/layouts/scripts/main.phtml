@@ -12,6 +12,7 @@
 
     <!-- Le styles -->
       <script src="<?=$this->baseUrl();?>js/jquery-1.7.2.min.js"></script>
+      <link rel="stylesheet" href="<?=$this->baseUrl();?>bootstrap/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?=$this->baseUrl();?>css/<?=$this->theme;?>.bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?=$this->baseUrl();?>css/05_main.css"/>
     <script src="<?=$this->baseUrl();?>js/bootstrap-alert.js"></script>
@@ -34,6 +35,7 @@
           <ul class="nav">
 <li><a href="<?=$this->baseUrl();?>">Home</a></li>
           </ul>
+<?php if($this->config['register']['usesUsers']==1) : ?>
 <?php if(!$this->loggedIn()) : ?>
           <form method="post" action="<?php echo $this->baseUrl();?>auth" class="pull-right topform">
             <input class="topinput input-small" type="text"  name="username" placeholder="Username">
@@ -48,6 +50,7 @@ Welcome <?php echo $this->loggedInAs()->username; ?>
  &nbsp; 
 <a href="<?php echo $this->baseUrl();?>auth/logout">Log out</a>
 <?php endif; ?>
+            <?php endif; ?>
 </div>
 
         </div>
@@ -63,7 +66,10 @@ Welcome <?php echo $this->loggedInAs()->username; ?>
         </div>
         <div class="row">
 
-          <div class="span14">
+            <div class="span4">
+                MENU AREA
+            </div>
+          <div class="span8">
 
 			<?php echo $this->layout()->content; ?>
  

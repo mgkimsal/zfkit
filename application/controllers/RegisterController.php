@@ -5,8 +5,7 @@ class RegisterController extends Zend_Controller_Action
 
     public function init()
     {
-    	$this->_config = Zend_Registry::get("config");
-		$this->session = new Zend_Session_Namespace("site");
+        parent::_init();
         $this->view->pageTitle = "Register";
     }
 

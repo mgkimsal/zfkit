@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends Zk_Controller
+class MobileController extends Zend_Controller_Action
 {
 
 
@@ -8,7 +8,8 @@ class IndexController extends Zk_Controller
 	{
         parent::_init();
 //		print_r( $this->_helper->_layout);
-		$this->view->pageTitle = "main";
+		$this->view->pageTitle = "mobile";
+        $this->_helper->_layout->setLayout("mobile");
 	  /* Initialize action controller here */
 	}
 

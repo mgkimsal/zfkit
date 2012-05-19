@@ -3,6 +3,11 @@
 class ErrorController extends Zend_Controller_Action 
 {
 
+    public function _init()
+    {
+        parent::_init();
+    }
+
     public function errorAction()
     {
 

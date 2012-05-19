@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><?php echo $this->title;?></title>
+    <meta name="description" content="<?php echo $this->description;?>">
+    <meta name="author" content="">
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+      <script src="<?=$this->baseUrl();?>js/jquery-1.7.2.min.js"></script>
+      <link rel="stylesheet" href="<?=$this->baseUrl();?>bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="<?=$this->baseUrl();?>css/<?=$this->theme;?>.bootstrap.min.css"/>
+	<link rel="stylesheet" href="<?=$this->baseUrl();?>css/05_main.css"/>
+    <script src="<?=$this->baseUrl();?>js/bootstrap-alert.js"></script>
+    <style type="text/css">
+      body {
+        padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+      }
+      
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Site</a>
+
+          <ul class="nav">
+<li><a href="<?=$this->baseUrl();?>">Home</a></li>
+          </ul>
+<?php if($this->config['register']['usesUsers']==1) : ?>
+<?php if(!$this->loggedIn()) : ?>
+          <form method="post" action="<?php echo $this->baseUrl();?>auth" class="pull-right topform">
+            <input class="topinput input-small" type="text"  name="username" placeholder="Username">
+
+            <input class="topinput input-small" type="password" name="password" placeholder="Password">
+            <input class="btn blacktext btn-info" name="topbtn" type="submit" value="Sign in"/>
+            <input class="btn blacktext btn-info" name="topbtn" type="submit" value="Register"/>
+          </form>
+<?php else : ?>
+<div class="pull-right loggedin">
+Welcome <?php echo $this->loggedInAs()->username; ?>
+ &nbsp; 
+<a href="<?php echo $this->baseUrl();?>auth/logout">Log out</a>
+<?php endif; ?>
+            <?php endif; ?>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+<?php echo $this->flashMessages();?>
+      <div class="content">
+        <div class="page-header">
+          <h1><?php echo $this->pageTitle ?: "page"; ?> 
+          <small><?php echo $this->pageSubTitle ?: ""; ?> </small></h1>
+        </div>
+        <div class="row">
+
+            <div class="span4">
+                MENU AREA
+            </div>
+          <div class="span8">
+
+			<?php echo $this->layout()->content; ?>
+ 
+          </div>
+        </div>
+      </div>
+
+      <footer>
+	  <p>&copy; site <?=date("Y");?></p>
+
+      </footer>
+
+    </div> <!-- /container -->
+<script>
+    $(".alert").alert();
+</script>
+  </body>
+</html>

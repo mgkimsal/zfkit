@@ -1,0 +1,59 @@
+<?php $this->headTitle('Forgot my password'); ?>
+<?php if ($e = $this->errors) { ?>
+    <?php foreach ($e as $error) { ?>
+        <div class="alert alert-error">
+            <a class="close" data-dismiss="alert"> x </a>
+            <?php echo $error;?>
+        </div>
+    <?php } ?>
+<?php } ?>
+<?php if ($e = $this->info) { ?>
+    <?php foreach ($e as $error) { ?>
+        <div class="alert alert-info">
+            <a class="close" data-dismiss="alert"> x </a>
+            <?php echo $error;?>
+        </div>
+    <?php } ?>
+<?php } ?>
+
+<?php if($this->done!=true) { ?>
+<form method="post" action="<?php echo $this->baseUrl();?>auth/forgotprocess" class="form-horizontal">
+    <fieldset>
+<div>
+    <p>
+        Enter a new password.
+    </p>
+</div>
+        <input type='hidden' name='key' value='<?=$this->user->resetkey;?>'/>
+        <div class="row">
+        <div class="span6">
+        <div class="control-group">
+            <label class="control-label" for="input01">Password</label>
+
+            <div class="controls">
+                <input type="password" class="input-xlarge" id="input01" name="password" value="">
+                <p>&nbsp;</p>
+                </input>
+            </div>
+
+            <label class="control-label" for="input01">Confirm password</label>
+
+            <div class="controls">
+                <input type="password" class="input-xlarge" id="input02" name="password2" value="">
+                <p>&nbsp;</p>
+                </input>
+            </div>
+
+
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="span6 centered">
+        <input type='submit' value='Reset' class='centered btn btn-info'/>
+        </div>
+        </div>
+    </fieldset>
+
+</form>
+<?php } ?>

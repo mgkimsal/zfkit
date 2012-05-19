@@ -1,2 +1,26 @@
 # put sample data to be loaded here
 # use yaml for doctrine fixtures
+
+Zfuser:
+ Zfuser_1:
+  username: admin
+  password: admin
+  Zfroles: [Zfrole_2]
+ Zfuser_2:
+  username: editor
+  password: editor
+  Zfroles: [Zfrole_3]
+ Zfuser_3:
+  username: manager
+  password: manager
+  Zfroles: [Zfrole_3]
+
+Zfrole:
+  Zfrole_1:
+    role: public
+  Zfrole_2:
+    role: admin
+  Zfrole_3:
+    role: editor
+  Zfrole_4:
+    role: manager

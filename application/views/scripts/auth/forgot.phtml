@@ -1,0 +1,59 @@
+<?php $this->headTitle('Forgot my password'); ?>
+<?php if ($e = $this->errors) { ?>
+    <?php foreach ($e as $error) { ?>
+        <div class="alert alert-error">
+            <a class="close" data-dismiss="alert"> x </a>
+            <?php echo $error;?>
+        </div>
+    <?php } ?>
+<?php } ?>
+<?php if ($e = $this->info) { ?>
+    <?php foreach ($e as $error) { ?>
+        <div class="alert alert-info">
+            <a class="close" data-dismiss="alert"> x </a>
+            <?php echo $error;?>
+        </div>
+    <?php } ?>
+<?php } ?>
+
+<form method="post" action="<?php echo $this->baseUrl();?>auth/forgot" class="form-horizontal">
+    <fieldset>
+<div>
+    <p>
+        Enter your email or username and we'll send you a link to reset your password.
+    </p>
+</div>
+        <div class="row">
+        <div class="span6">
+        <div class="control-group">
+            <label class="control-label" for="input01">Email</label>
+
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input01" name="email" value="">
+
+                <p class="help-block">Examples: eat@joes.com</p>
+                </input>
+            </div>
+
+            <label class="control-label" for="input01">Username</label>
+
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input02" name="username" value="">
+
+                <p class="help-block">Example: yahoofanboy76</p>
+                </input>
+            </div>
+
+
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="span6 centered">
+        <input type='submit' value='Reset' class='centered btn btn-info'/>
+        </div>
+        </div>
+    </fieldset>
+
+</form>
+

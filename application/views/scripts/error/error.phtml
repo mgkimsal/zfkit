@@ -1,28 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Zend Framework Default Application</title>
-</head>
-<body>
-  <h1>An error occurred</h1>
+
+
+
+<div class="row centered">
+  <h1>Whoops!</h1>
   <h2><?php echo $this->message ?></h2>
+</div>
 
-  <?php if (isset($this->exception)): ?>
+  <div class="row centered">
+<img src="<?=$this->baseUrl();?>images/puppy1.jpg" alert="404 puppy1"/>
+      </div>
 
-  <h3>Exception information:</h3>
-  <p>
-      <b>Message:</b> <?php echo $this->exception->getMessage() ?>
-  </p>
 
-  <h3>Stack trace:</h3>
-  <pre><?php echo $this->exception->getTraceAsString() ?>
-  </pre>
+<div class="row centered">
+We couldn't find the page you were looking for,
+    <br/>
+    so here's a cute puppy to help make up for our mistake!
+    <br/>
+    <br/>
 
-  <h3>Request Parameters:</h3>
-  <pre><?php echo var_export($this->request->getParams(), true) ?>
-  </pre>
-  <?php endif ?>
+</div>
+
 
 </body>
 </html>

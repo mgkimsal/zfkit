@@ -72,3 +72,93 @@ footer
     margin: 0 auto;
     width: 100%;
 }
+
+#mapdiv
+{
+    width: 400px;
+    height: 400px;
+	float:left;
+}
+.divlat
+{
+	float:left; 
+	margin-right: 2em;
+}
+.divlon
+{
+}
+
+.container-fluid 
+{
+	padding: 5px;
+}
+.topnav
+{
+}
+#mapselect
+{
+
+}
+
+body
+{
+
+}
+#cancelbutton
+{
+float:left;
+}
+#logoimage
+{
+    margin-top: -8px;
+    height:30px;
+}
+.navbar-inner
+{
+    background-color: black;
+    background-image: inherit;
+}
+.navbar li{
+    margin-top: 4px;
+}
+.topform
+{
+    margin-top: 4px;
+}
+.loggedin
+{
+    margin-top: 15px;
+}
+#mobilecontent
+{
+	width:90%;
+	margin-right: 2em;
+	padding-right: 2em;
+}
+.markercentered
+{
+	margin-left: -2em;
+}
+.container
+{
+}
+.inputtext
+{
+	width:180px;
+}
+.inputselect
+{
+	width:180px;
+}
+td.inputlabel
+{
+	width:180px;
+}
+#buttonselect {
+	width:180px;
+}
+#markerbutton
+{
+	text-align:center;
+	margin: 0 auto;
+}

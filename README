@@ -54,11 +54,10 @@ Something like this would be appropriate
 -------
 
 DB setup
-
-The datbase layer - redbean - will automatically create tables in the application/dev.db 
-file.  Make sure this file and directory are writeable by your web server.
-
-chmod 777 application/dev.db
+Go in to the scripts directory and run the ./run script
+This will automatically drop/create the database, create a schema
+and insert sample data, based on the Doctrine data in /application/data
+(specifically, the schema.yml and fixtures/data.yml files)
 
 -------
 

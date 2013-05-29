@@ -8,9 +8,9 @@ class AuthController extends Zend_Controller_Action
 
 	public function init()
 	{
-        parent::_init();
 		$this->view->pageTitle = "Log in";
 		$this->view->pageSubTitle = "";
+        $this->_config = Zend_Registry::get("config");
 	}
 	
     public function indexAction()
@@ -27,7 +27,7 @@ class AuthController extends Zend_Controller_Action
             if ($form->isValid($request->getPost())) {
             	if ($this->_process($_POST)) {
             		// We're authenticated! Redirect to the home page
-                    $this->_helper->redirector('index', 'index');
+                    $this->_helper->redirector('index', 'project');
                 }
             }
             $errors[] = "We couldn't log you in with that information";
@@ -55,8 +55,9 @@ class AuthController extends Zend_Controller_Action
             } else {
                 $u->resetkey = sha1(microtime()).":".time();
                 R::store($u);
-                $link = $this->_config['base']['fullurl']."auth/forgotprocess/key/".$u->resetkey;
-                $email = file_get_contents(APPLICATION_PATH."/configs/".$this->_config['register']['forgotPasswordEmail']);
+                $link = $this->_config['base']['fullurl']."/auth/forgotprocess/key/".$u->resetkey;
+#                $email = file_get_contents(APPLICATION_PATH."/configs/".$this->_config['register']['forgotPasswordEmail']);
+                $email = file_get_contents($this->_config['register']['forgotPasswordEmail']);
                 $email = str_replace("[url]", $link, $email);
 
                 $zm = new Zend_Mail();
@@ -96,7 +97,7 @@ class AuthController extends Zend_Controller_Action
             {
                 $u->password = sha1($_POST['password']);
                 R::store($u);
-                $info[] = "Password successfully updated";
+                $info[] = "Password successfully updated - please sign in now.";
                 $this->view->done = true;
             }
             $this->view->errors = $errors;

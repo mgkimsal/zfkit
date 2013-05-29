@@ -6,14 +6,17 @@ class Zend_View_Helper_flashMessages extends Zend_View_Helper_Abstract
 	
 	public function flashMessages()
 	{
-		$m = $this->view->flash;
+		$m = $this->getMessenger()->getMessages();
 		$all = '';
 		if(!is_array($m)) { return ; } 
 		foreach($m as $message) {
 			$all .= <<<EOD
-			<div class="row-fluid">
+			<div class="row-fluid alertmessages">
 			<div class="alert-block span12">
-			<div class="alert alert-success textcenter">$message</div>
+			<div class="alert alert-success textcenter">
+			 <a class="close" data-dismiss="alert"> x </a>
+			 $message
+			</div>
 			</div>
 			</div>
 EOD;

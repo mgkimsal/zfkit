@@ -21,13 +21,24 @@ class SampleTest extends Zend_Test_PHPUnit_ControllerTestCase
 		$this->assertTrue(1==1);
 	}
 
-	public function testAdminUser() {
-		$this->_request->setParam("foo", "bar");
-		$this->dispatch('/test/test1');
-		$this->assertResponseCode('200');
-		$body = $this->getResponse()->getBody();
-		echo $body;
-		$this->assertTrue(stripos($body, "zfkit")!==false);
-	}
+//	public function testAdminUser() {
+//		$this->_request->setParam("foo", "bar");
+//		$this->dispatch('/test/test1');
+//		$this->assertResponseCode('200');
+//		$body = $this->getResponse()->getBody();
+//		echo $body;
+//		$this->assertTrue(stripos($body, "zfkit")!==false);
+//	}
+
+
 
 }
+
+
+
+
+
+
+
+
+

@@ -5,6 +5,10 @@ RewriteEngine On
 #RewriteBase /zk/
 #RewriteBase /beta/
 
+  RewriteCond %{REQUEST_URI} "/blog/" [OR]
+  RewriteCond %{REQUEST_URI} "/folder2/"
+  RewriteRule (.*) $1 [L]
+
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d

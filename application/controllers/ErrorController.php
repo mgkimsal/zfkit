@@ -3,16 +3,11 @@
 class ErrorController extends Zend_Controller_Action 
 {
 
-    public function _init()
-    {
-        parent::_init();
-    }
-
     public function errorAction()
     {
-        $this->_helper->_layout->setLayout("error");
+        $this->_helper->_layout->setLayout("interior");
         $errors = $this->_getParam('error_handler');
-        
+        Zend_Debug::dump($errors);die();
         switch ($errors->type) {
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ROUTE:
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER:
@@ -37,6 +32,8 @@ class ErrorController extends Zend_Controller_Action
         
         $this->view->request   = $errors->request;
 
+        $message = print_r($this->view, 1);
+        mail("mgkimsal@gmail.com", "Error on fieldflag", $message, "From: info@fieldflag.com");
     }
 
     public function getLog()

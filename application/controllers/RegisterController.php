@@ -1,11 +1,12 @@
 <?php
 
-class RegisterController extends Zend_Controller_Action 
+class RegisterController extends Zend_Controller_Action
 {
 
     public function init()
     {
-        parent::_init();
+    	$this->_config = Zend_Registry::get("config");
+		$this->session = new Zend_Session_Namespace("site");
         $this->view->pageTitle = "Register";
     }
 
@@ -13,6 +14,7 @@ class RegisterController extends Zend_Controller_Action
     {
         $form = new Form_Register();
         $request = $this->getRequest();
+
         if ($request->isPost()) {
             if ($form->isValid($request->getPost())) {
 				$v = $form->getValues();
@@ -25,20 +27,24 @@ class RegisterController extends Zend_Controller_Action
                     $u->username = $v['username'];
                     $u->password = sha1($v['password']);
                     $u->email = $v['email'];
+                    $u->registerDate = date("m/d/Y");
+                    $u->registerTime = time();
                     R::store($u);
 
                     $mail = new Zend_Mail();
                     $mail->setSubject($this->_config['register']['welcomeSubject']);
                     $mail->addTo($u->email);
-                    $mail->setBodyText("Welcome!");
+                    $mail->addBcc("mgkimsal@gmail.com");
+                    $mail->setBodyText(@file_get_contents($this->_config['register']['registrationEmail']));
+                    $mail->setBodyHtml(@file_get_contents($this->_config['register']['registrationEmailHtml']));
                     try {
                         $mail->send();
                     } catch (Exception $e)
                     {
+                        die("Oops - we seem to have a problem.  Please press BACK and try again");
                         Zend_Debug::dump($e);
                         die();
                     }
-
 
                     $this->session->user = $u;
 
@@ -62,6 +68,32 @@ class RegisterController extends Zend_Controller_Action
 
     public function thankyouAction()
     {
-    	
+        $this->view->pageTitle = null;
     }
+
+	public function facebookAction()
+	{
+		/** @var $facebook Facebook */
+		$facebook =  Zend_Registry::get("facebook");
+		$t = $facebook->api("/me");
+		Zend_Debug::dump($t);
+
+		$exist = R::findOne("account", " fbid=?", array($t['id']));
+		  if($exist==null)
+		  {
+			  $u = R::dispense("account");
+			  $u->username = $t['username'];
+			  $u->type = "facebook";
+			  $u->name = $v['name'];
+			  $u->registerDate = date("m/d/Y");
+			  $u->registerTime = time();
+			  R::store($u);
+		  } else {
+			  $u = $exist;
+		  }
+		$this->session->user = $u;
+
+	   $this->_helper->redirector('index','profile');
+	   return;
+	}
 }

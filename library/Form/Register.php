@@ -7,7 +7,9 @@ class Form_Register extends Zend_Form
     {
         $this->setName("login");
         $this->setMethod('post');
-             
+
+        $this->addElement('hidden','plan');
+
         $this->addElement('text', 'username', array(
             'filters'    => array('StringTrim', 'StringToLower'),
             'validators' => array(

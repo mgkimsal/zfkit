@@ -6,7 +6,6 @@ class TestController extends Zend_Controller_Action
 
 	public function init()
 	{
-        parent::_init();
 	  /* Initialize action controller here */
 	}
 
@@ -19,7 +18,7 @@ class TestController extends Zend_Controller_Action
 	{
 		echo microtime()."\n";
 		$a = account::findOneByUsername("admin");
-echo microtime();		echo $a->username;die();
+echo microtime(true);		echo $a->username;die();
 		return;
 	}
 

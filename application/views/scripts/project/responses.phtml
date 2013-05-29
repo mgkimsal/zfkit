@@ -1,0 +1,221 @@
+<style>
+    img {
+        max-width: inherit;
+    }
+</style>
+
+<div class="page-header">
+    <div class="pull-right">
+        Export to &nbsp; <a class="" href="<?=$this->baseUrl();?>project/export/id/<?=$this->project->id;?>"><i
+        class="icon-file "></i> CSV</a>
+        &nbsp;
+        <a class="" href="<?=$this->baseUrl();?>project/exportXLS/id/<?=$this->project->id;?>"><i
+            class="icon-file "></i> Excel</a>
+        &nbsp;
+        <a class="" target="_blank" href="<?=$this->baseUrl();?>project/responsesprint/id/<?=$this->project->id;?>"><i
+                    class="icon-print"></i> Printer</a>
+    </div>
+    <h1>Responses for <?=$this->project->name;?></h1>
+</div>
+
+<div class="row">
+    <div class="span12">
+
+        <div id="mapresponses" style="height:250px; width:100%; position:relative;">
+        </div>
+    </div>
+</div>
+
+<div class="row tablescroll" id="responsesdiv">
+    <div class="span12">
+
+        <table id="responses" class="table table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Who?</th>
+                <?php
+                foreach ($this->fields as $num => $field) {
+                    if ($field->name != '') {
+                        ?>
+                        <th><?=$field->name;?></th>
+                        <?php } ?>
+                    <?php } ?>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $counter = 0;
+            foreach ($this->responses as $r) {
+                ++$counter;
+                ?>
+            <tr id="row<?=$counter;?>">
+                <td><?=$counter;?></td>
+                <td>
+                    <?=date("m/d/Y", $r->submitted);?>
+                    <br/>
+                    <?=date("h:i a", $r->submitted);?>
+                </td>
+                <td>
+                    <?php
+                    $u = R::findOne("contributor", " id=?", array($r->who_id));
+                    echo @$u->email;
+                    ?>
+                </td>
+
+                    <?php
+                    @$js .= "addlatlon($r->lat, $r->lon, $counter);\n";
+                    ?>
+                
+                <?php
+                $num = 0;
+                foreach ($this->fields as $field) {
+                    ++$num;
+                    if ($field->name != '') {
+                        ?>
+                        <td>
+                            <?php
+                            $key = "response$num";
+                            $keyType = "responseType$num";
+                            if ($r->$keyType != 'file') {
+                                echo $r->$key;
+                            } else {
+                                $f = R::findOne("file", " id=?", array($r->$key));
+                                if ($f) {
+                                    echo "<img width='100' src=\"" . $this->baseUrl() . "project/picthumb/id/" . $f->id . "/hash/" . $f->hash . "/project/" . $f->projecthash . "\"/>";
+                                }
+                            }
+                            ?>
+                        </td>
+                        <?php } ?>
+                    <?php } ?>
+            </tr>
+
+                <?php } ?>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<script>
+    var leafmap;
+    var lbounds = [];
+    var mark;
+    var markers = [];
+    var mylatlon = [];
+    L.Icon.Green = L.Icon.extend({options:{iconUrl:L.ROOT_URL + "images/marker_green.png", iconSize:new L.Point(25, 41), iconAnchor:new L.Point(13, 41), popupAnchor:new L.Point(0, -33), shadowUrl:L.ROOT_URL + "images/marker-shadow.png", shadowSize:new L.Point(41, 41)}});
+
+
+    L.iconNumber = L.Icon.extend({
+        options:{
+            iconUrl:L.ROOT_URL + "images/marker_blue.png",
+            number:'',
+            shadowUrl:L.ROOT_URL + "images/marker-shadow.png",
+            iconSize:new L.Point(25, 41),
+            iconAnchor:new L.Point(13, 41),
+            popupAnchor:new L.Point(0, -33),
+            className:'leaflet-div-icon'
+        },
+
+        createIcon:function () {
+            var div = document.createElement('div');
+            var img = this._createImg(this.options['iconUrl']);
+            var numdiv = document.createElement('div');
+            numdiv.setAttribute("class", "number");
+            numdiv.innerHTML = this.options['number'] || 'mgk';
+            div.appendChild(img);
+            div.appendChild(numdiv);
+            this._setIconStyles(div, 'icon');
+            return div;
+        }
+    });
+    L.iconNumberGreen = L.Icon.extend({
+        options:{
+            iconUrl:L.ROOT_URL + "images/marker_green.png",
+            number:'',
+            shadowUrl:L.ROOT_URL + "images/marker-shadow.png",
+            iconSize:new L.Point(25, 41),
+            iconAnchor:new L.Point(13, 41),
+            popupAnchor:new L.Point(0, -33),
+            className:'leaflet-div-icon'
+        },
+
+        createIcon:function () {
+            var div = document.createElement('div');
+            var img = this._createImg(this.options['iconUrl']);
+            var numdiv = document.createElement('div');
+            numdiv.setAttribute("class", "number");
+            numdiv.innerHTML = this.options['number'] || 'mgk';
+            div.appendChild(img);
+            div.appendChild(numdiv);
+            this._setIconStyles(div, 'icon');
+            return div;
+        }
+    });
+
+
+    var newGreenIcon = new L.Icon.Green();
+
+    var tileurl = "http://a.tiles.mapbox.com/v3/fieldflag.map-6w0rt8ml.jsonp";
+
+    $(document).ready(function () {
+        initializeLeaf();
+    <?=$js;?>
+        leafmap.invalidateSize();
+        var zoom = leafmap.getBoundsZoom(lbounds);
+        if (zoom > 15) {
+            zoom = 15;
+        }
+        leafmap.setView(lbounds.getCenter(), zoom);
+
+//        $('#responses').tableScroll({height:200});
+    });
+
+    function initializeLeaf() {
+        leafmap = new L.Map('mapresponses');
+        // Get metadata about the map from MapBox
+        // then add MapBox Streets as a base layer in the callback
+        wax.tilejson(tileurl, function (tilejson) {
+            leafmap.addLayer(new wax.leaf.connector(tilejson));
+        });
+        wax.leaf.interaction().map(leafmap);
+        lbounds = new L.LatLngBounds();
+    }
+
+    function addlatlon(lat, lon, id) {
+        mylatlon[id] = new L.LatLng(lat, lon);
+
+        var newi = new L.iconNumber({number:id});
+        var temp = new L.Marker(mylatlon[id], {icon:newi});
+        temp.id = id;
+
+        markers[id] = temp;
+        temp.on("click", function (e) {
+            hoverOver(e);
+        });
+        leafmap.addLayer(markers[id]);
+        lbounds.extend(mylatlon[id]);
+
+    }
+
+    function hoverOver(e) {
+        id = e.target.id;
+        if (jQuery("#row" + id).hasClass("responseSelected")) {
+            jQuery("#row" + id).removeClass("responseSelected");
+            markers[id].setIcon(new L.iconNumber({number:id}));
+        } else {
+            jQuery("#row" + id).addClass("responseSelected");
+            var w = $("#responsesdiv");
+            var row = $('#row' + id);
+
+            if (row.length) {
+                w.scrollTop(row.offset().top - (w.height() / 2));
+            }
+            markers[id].setIcon(new L.iconNumberGreen({number:id}));
+
+        }
+    }
+
+</script>

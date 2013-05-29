@@ -1,0 +1,52 @@
+.leaflet-container .leaflet-control-attribution
+{
+    font-size: 6px;
+}
+#latlabel
+{
+    float:left;
+}
+#lonlabel
+{
+    float:left;
+}
+#lat
+{
+    float:right;
+}
+#lon
+{
+    float:right;
+}
+.divlat
+{
+    margin-top:.2em;
+}
+.divlon
+{
+    margin-top:.2em;
+}
+.ui-select
+{
+    margin-bottom: 1.5em;
+}
+input.inputtext
+{
+    margin-bottom: 1.5em;
+}
+.uploadfilerow label
+{
+    clear:both;
+}
+.uploadfilerow
+{
+    margin-bottom: 1.5em;
+    clear:both;
+}
+/**
+ * for ie9 default on mobile page
+ */
+.table 
+{
+	width:100%;
+}

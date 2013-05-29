@@ -1,0 +1,16 @@
+body
+{
+    background-color: #fff;
+}
+.tablescroll
+{
+    overflow-y: auto;
+    height: 300px;
+    overflow-x: hidden;
+}
+footer
+{
+    height:0px;
+    background-color: inherit;
+    box-shadow: none;
+}

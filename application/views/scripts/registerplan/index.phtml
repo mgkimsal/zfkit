@@ -1,0 +1,23 @@
+<?php $this->headTitle('Register'); ?>
+
+<?php if ($e = $this->form->getErrorMessages()) { ?>
+    <?php foreach ($e as $error) { ?>
+        <div class="alert alert-error">
+            <a class="close" data-dismiss="alert"> x </a>
+            <?php echo $error;?>
+        </div>
+    <?php } ?>
+<?php } ?>
+
+<p>
+    You are registering for the 
+    "<i><?=ucfirst(strtolower($this->plan));?></i>" plan.
+    </p>
+<p>You can
+    change your plan later from your account.
+    </p>
+<p>
+    You will not be asked for
+    billing information until your free trial period is expiring.
+</p>
+<?php echo $this->form->setAction($this->url()); ?>

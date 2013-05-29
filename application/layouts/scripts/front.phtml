@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <title><?=$this->siteTitle();?></title>
+		<link rel="stylesheet" type="text/css" href="<?=$this->baseUrl();?>appcase/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="<?=$this->baseUrl();?>appcase/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="<?=$this->baseUrl();?>css/front.css"/>
+ 	</head>
+	<body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+
+
+          <ul class="nav">
+<li><a href="<?=$this->baseUrl();?>"><?=$this->siteTitle();?></a></li>
+</ul>
+<?php if(!$this->loggedIn()) : ?>
+	<?php if($this->allowRegister()) : ?>
+		<form method="get" action="<?php echo $this->baseUrl();?>register" class="pull-right topform">
+		<input class="btn blacktext btn-primary" name="topbtn" type="submit" value="Register"/>
+		</form>
+		&nbsp;
+	<?php endif; ?>
+          <form method="post" action="<?php echo $this->baseUrl();?>auth" class="pull-right topform">
+            <input class="topinput input-small" type="text"  name="username" placeholder="Username">
+
+            <input class="topinput input-small" type="password" name="password" placeholder="Password">
+            <input class="btn blacktext btn-primary" name="topbtn" type="submit" value="Sign in"/>
+          </form>
+
+<?php else : ?>
+<div class="pull-right loggedin">
+Welcome <?php echo $this->loggedInAs()->username; ?>
+ &nbsp;
+            <?php if($this->loggedIn()) : ?>
+                       <a href="<?=$this->baseUrl();?>project">My Projects</a>
+             <?php endif; ?>
+ |
+<a href="<?php echo $this->baseUrl();?>auth/logout">Log out</a>
+<?php endif; ?>
+</div>
+
+        </div>
+      </div>
+    </div>
+<div class="contentarea">
+
+	<div id="top_feature">
+	  <div class="container">
+		<div class="row">
+		      <div class="span4 relative">
+		      	<img class="big_iphone" width="300" height="415" src="<?=$this->baseUrl();?>appcase/img/iphone.png" alt="iphone"/>
+		      	<img class="iphone_ss" width="177" height="270" src="<?=$this->baseUrl();?>images/iphone1.png" alt="iphoness"/>
+                  <div class="row">
+                      <div class="span4 centered" style="margin-left:1.4em;">
+                          <h4>Works with Android and iOS!</h4>
+                          <img src="<?=$this->baseUrl();?>images/android-ios_small.png" width="70" alt="works on android and ios devices"/>
+                      </div>
+                  </div>
+		      </div>
+		      <div class="span8">
+		      	<h1>Time Grab</h1>
+		      	<h2>Mobile Ticketing Made Easy</h2>
+		      	<hr />
+		      	<div id="features" class="row" style="display:none">
+		      		<div class="span4">
+		      			<h3><img style="margin-left: 9px; padding-right: 9px;" src="<?=$this->baseUrl();?>js/wax6beta/ext/images/marker.png" alt="cycle" width="20" height="20"/> Capture Current Location</h3>
+		      			<p>Drag and drop the placemarker to log your GPS coordinates.</p>
+		      		</div>
+		      		<div class="span4">
+		      			<h3><img src="<?=$this->baseUrl();?>images/file_edit.png" alt="collect data"" width="40" height="40"/>Collect Attribute Data</h3>
+		      			<p>Create a customized data entry form to collect associated attribute information for each point.</p>
+		      		</div>
+		      		<div class="span4">
+		      			<h3><img src="<?=$this->baseUrl();?>images/file_excel.png" alt="export to excel" width="40" height="40"/>Export Data</h3>
+		      			<p>Export all of your data to either CSV or Excel formats for later use</p>
+		      		</div>
+		      		<div class="span4">
+		      			<h3><img  style="margin-top:-4px; padding-bottom: 10px; margin-left: 5px; padding-right: 0px;" src="<?=$this->baseUrl();?>images/users.png" alt="people" width="32" height="32"/>Manage Mobile Projects</h3>
+		      			<p>Deploy data entry forms across multiple devices instantly. Validate collection efforts through administrative console.</p>
+		      		</div>
+
+		      	</div>
+                  <div id="buttons" class="row">
+                      <div class="span8 centered">
+                  <form method='post' action="<?=$this->baseUrl();?>index/post">
+                  <h3>
+                  Join our mailing list!
+                  </h3>
+                  <input type='text' name='email'/>
+                  <input type='submit' value='Join!' class='btn btn-primary'/>
+
+                  </form>
+                      </div>
+                  </div>
+
+		      </div>
+
+		</div>
+	  </div>
+	</div>
+    <div class="clearfix"></div>
+
+</div>
+    <div class="clearfix"></div>
+
+<?=$this->footer();?>
+
+		<script src="<?=$this->baseUrl();?>js/jquery-1.7.2.min.js"></script>
+		<script src="<?=$this->baseUrl();?>appcase/js/bootstrap.js"></script>
+		<script src="<?=$this->baseUrl();?>appcase/js/bootstrap-tab.js"></script>
+		<script src="<?=$this->baseUrl();?>appcase/js/bootstrap-tooltip.js"></script>
+		<script src="<?=$this->baseUrl();?>appcase/js/bootstrap-popover.js"></script>
+		<script src="<?=$this->baseUrl();?>appcase/js/custom.js"></script>
+
+
+	</body>
+</html>

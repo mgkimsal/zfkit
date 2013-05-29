@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+    <link
+        href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic'
+        rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <title><?php echo $this->title ? : "TimeGrab";?></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="<?=$this->baseUrl();?>appcase/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?=$this->baseUrl();?>appcase/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="<?=$this->baseUrl();?>css/front.css"/>
+    <style type="text/css">
+        body {
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+    </style>
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="<?=$this->baseUrl();?>assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="<?=$this->baseUrl();?>assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="<?=$this->baseUrl();?>assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed"
+          href="<?=$this->baseUrl();?>assets/ico/apple-touch-icon-57-precomposed.png">
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+
+
+            <ul class="nav">
+                <li><a href="<?=$this->baseUrl();?>"><?="TimeGrab";?></a></li>
+
+            </ul>
+            <?php if (!$this->loggedIn()) : ?>
+            <form method="post" action="<?php echo $this->baseUrl();?>auth" class="pull-right topform">
+                <input class="topinput input-small" type="text" name="username" placeholder="Username">
+
+                <input class="topinput input-small" type="password" name="password" placeholder="Password">
+                <input class="btn blacktext btn-primary" name="topbtn" type="submit" value="Sign in"/>
+            </form>
+            <?php else : ?>
+<div class="pull-right loggedin">
+Welcome <?php echo $this->loggedInAs()->username; ?>!
+            &nbsp;
+            <?php if ($this->loggedIn()) : ?>
+<!--                <a href="--><?//=$this->baseUrl();?><!--project">My Projects</a>-->
+                <?php endif; ?>
+            |
+            <a href="<?php echo $this->baseUrl();?>auth/logout">Log out</a>
+            <?php endif; ?>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="contentarea">
+
+    <div class="container">
+
+<?php echo $this->layout()->content; ?>
+</div>
+
+    
+</div>
+
+<?=$this->footer();?>
+
+
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="<?=$this->baseUrl();?>js/jquery-1.7.2.min.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-transition.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-alert.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-modal.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-dropdown.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-scrollspy.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-tab.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-tooltip.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-popover.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-button.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-collapse.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-carousel.js"></script>
+<script src="<?=$this->baseUrl();?>assets/js/bootstrap-typeahead.js"></script>
+
+
+</body>
+</html>

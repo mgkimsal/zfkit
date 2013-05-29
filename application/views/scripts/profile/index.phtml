@@ -1,0 +1,14 @@
+<?php $this->headTitle('My profile'); ?>
+
+<?php if ($e = $this->form->getErrorMessages()) { ?>
+    <?php foreach ($e as $error) { ?>
+        <div class="alert alert-error">
+            <a class="close" data-dismiss="alert"> x </a>
+            <?php echo $error;?>
+        </div>
+    <?php } ?>
+<?php } ?>
+
+
+
+<?php echo $this->form->setAction($this->url()); ?>

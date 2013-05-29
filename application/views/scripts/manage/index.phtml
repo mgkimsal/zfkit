@@ -1,0 +1,75 @@
+
+
+<form method="post" action="<?php echo $this->baseUrl();?>manage/addticket" class="form-horizontal">
+    <fieldset>
+
+        <div class="row">
+        <div class="span6">
+            <h3>Active tickets: <?=$this->activeCount;?></h3>
+        </div>
+
+        <div class="span6 centered">
+                    <input type="text" placeholder="Ticket subject" class="input-xlarge" style="width:200px;" id="input01"
+						   name="subject" />                   <input type='submit' value='Add new ticket' class=' btn
+						   btn-info'/>
+
+        </div>
+        </div>
+    </fieldset>
+
+</form>
+
+
+    <h2>Existing tickets</h2>
+<table class="table table-bordered">
+<tr>
+    <th colspan="1"></th><th>Subject</th>
+    <th>Technicians</th>
+    <th>Entries</th>
+    <th></th>
+</tr>
+    <?php foreach($this->tickets as $p) { ?>
+    <tr>
+        <td style="width:180px;">
+            <div  class="centered">
+            <a class="" href="<?=$this->baseUrl();?>manage/edit/id/<?=$p->id;?>"><i class="icon-cog "></i> Edit</a>
+            </div>
+        </td>
+
+
+
+        <td>
+            <div class="projectname">
+            <?=$p->subject;?>
+        </div>
+        </td>
+        <td>
+			<?php foreach($p->ownAccount as $t) { ?>
+			<?php echo $t->name;?><br/>
+		<?php } ?>
+        </td>
+        <td>
+        </td>
+        <td>
+<!--            <form class="smallform" method="post" action="--><?//=$this->baseUrl();?><!--project/del/id/--><?//=$p->id;?><!--">-->
+<!--                <input type="submit" class="btn btn-danger btn-small" value="Remove"-->
+<!--                    onclick="if(!confirm('Are you sure?')) { return false; }"-->
+<!--                    />-->
+<!--            </form>-->
+<!---->
+<!--            --><?php //if($p->active=='y') { ?>
+<!--            <form  class="smallform" method="post" action="--><?//=$this->baseUrl();?><!--project/deactivate/id/--><?//=$p->id;?><!--">-->
+<!--                <input type="submit" class="btn btn-warning btn-small" value="Deactivate"-->
+<!--                    onclick="if(!confirm('Are you sure?')) { return false; }"-->
+<!--                    />-->
+<!--            </form>-->
+<!--                --><?php //} else { ?>
+<!--        <form  class="smallform" method="post" action="--><?//=$this->baseUrl();?><!--project/reactivate/id/--><?//=$p->id;?><!--">-->
+<!--            <input type="submit" class="btn btn-info btn-small" value="Reactivate" />-->
+<!--                </form>-->
+<!--        --><?php //} ?>
+
+        </td>
+    </tr>
+    <?php } ?>
+</table>

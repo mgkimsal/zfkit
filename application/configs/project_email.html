@@ -1,0 +1,35 @@
+
+<body bgcolor="white">
+<table>
+
+    <tr>
+        <td colspan="2">
+        <h2>Project: <?=$project->name;?></h2>
+        <?php if($project->description!='') { ?>
+        <h2>Description</h2>
+        <?=nl2br($project->description);?>
+            <?php } ?>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <h2>Get started!</h2>
+            Please <a href="<?=$url;?>mobile/index/project/<?=$project->hash;?>/id2/<?=$c->hash;?>">click here</a>
+             to complete your project assignment.
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Questions?  Email info@fieldflag.com and we'll get back to you right away!
+        </td>
+        <td align="center">
+            <img src="http://fieldflag.com/images/fieldflaglogo1.png" width="60" alt="Field Flag Logo"/>
+        </td>
+
+    </tr>
+</table>
+
+</body>
+
+

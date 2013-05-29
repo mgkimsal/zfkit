@@ -1,0 +1,9 @@
+#!/usr/bin/php
+<?php
+include("../base.php");
+
+$application->getBootstrap()->bootstrap('doctrine');
+$options = $application->getOption('doctrine');
+
+$cli = new Doctrine_Cli($options);
+$cli->run($_SERVER['argv']);

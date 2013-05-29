@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<nav>
+		<home>
+			<label>Home</label>
+			<controller>index</controller>
+			<action>index</action>
+		</home>
+		<about>
+			<label>About</label>
+			<controller>index</controller>
+			<action>about</action>
+		</about>
+		<contact>
+			<label>Contact</label>
+			<controller>index</controller>
+			<action>contact</action>
+		</contact>
+		<tos>
+			<label>Terms of Service</label>
+			<controller>index</controller>
+			<action>tos</action>
+		</tos>
+		<privacy>
+			<label>Privacy Policy</label>
+			<controller>index</controller>
+			<action>privacy</action>
+		</privacy>
+	</nav>
+</config>

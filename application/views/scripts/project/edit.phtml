@@ -1,0 +1,203 @@
+<div class="row">
+
+    <div class="span6">
+        <div class="centered">
+            <h2>Project definition</h2>
+        </div>
+
+        <form method="post" id="projectform" action="<?php echo $this->baseUrl();?>project/update"
+              class="form-horizontal">
+            <input type='hidden' name='id' value='<?=$this->project->id;?>'/>
+            <fieldset>
+
+                <div class="row">
+                    <div class="span6">
+
+                        <div class="control-group">
+                            <label class="control-label" for="input01">Project name</label>
+
+                            <div class="controls">
+                                <input type="text" class="projectinput" placeholder="Project name"
+                                       id="input01" name="name" value="<?=$this->escape($this->project->name);?>"/>
+
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="input05">Instructions</label>
+
+                            <div class="controls">
+                                <textarea class="projectinput" placeholder="Instructions for the team here"
+                                          id="description"
+                                          name="description"><?php echo $this->escape($this->project->description);?></textarea>
+
+
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="projectcontributors">Contributor emails</label>
+
+                            <div class="controls">
+                                <textarea class="" placeholder="List of email addresses, one on each line"
+                                          id="projectcontributors"
+                                          name="emails"><?php foreach ($this->project->ownContributor as $c) { ?><?= $c->email . "\n"
+                                    ; ?><? } ?></textarea>
+
+                            </div>
+                        </div>
+
+
+                        <div class="control-group">
+                            <label class="control-label" for="input01">POST URL</label>
+
+                            <div class="controls">
+                                <input type="text" class="projectinput" placeholder="http://yoursite.com/api/to/post/to"
+                                       id="inputpost" name="posturl" value="<?=$this->escape($this->project->posturl);?>"/>
+                                <p class="help-block">
+                                    (optional) We can POST each submission
+                                    <br/> to your web server for
+                                    real-time
+                                    integration with <br/>
+                                    your custom applications.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <?php
+                        $x = 0;
+                        foreach ($this->fields as $num => $field) {
+                            $x++;
+                            ?>
+
+                            <p class="pull-left">
+                            <h3 class="pull-left"><i class="icon-remove-sign clearlink" id="clear_<?=$x;?>"></i> Field
+                                #<?=$x;?></h3>
+                            </p>
+                            <div class="clearfix"></div>
+                            <div class="control-group">
+                                <label class="control-label" for="pc1">Name</label>
+
+                                <div class="controls">
+                                    <input class="projectinput" id="name_<?=$x;?>" type='text'
+                                           name='field[<?=$x;?>][name]' value="<?=$this->escape($field->name);?>">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="pc1">Type</label>
+
+                                <div class="controls">
+
+                                    <select class="projectinput selectbox" id="select_<?=$x;?>"
+                                            name='field[<?=$x;?>][type]'>
+                                        <option value='text'<?if ($field->type == 'text') { ?>
+                                                selected="selected"<? }?>>Text
+                                        </option>
+                                        <option value='number'<?if ($field->type == 'number') { ?>
+                                                selected="selected"<? }?>>Number
+                                        </option>
+                                        <option value='date'<?if ($field->type == 'date') { ?>
+                                                selected="selected"<? }?>>Date
+                                        </option>
+                                        <option value='list'<?if ($field->type == 'list') { ?>
+                                                selected="selected"<? }?>>List
+                                        </option>
+                                        <option value='photo'<?if ($field->type == 'photo') { ?>
+                                                selected="selected"<? }?>>Photo (Android devices only)
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <?php
+                            $optionDisplay = "none";
+                            if ($field->type == "list") {
+                                $optionDisplay = "block";
+                            }
+                            ?>
+
+                            <div class="control-group optiongroup_<?=$x;?>" style="display:<?=$optionDisplay;?>;">
+                                <label class="control-label" for="pc1">List options</label>
+
+                                <div class="controls">
+
+                                    <textarea class="projectinput" id="option_<?=$x;?>" name='field[<?=$x;?>][options]'
+                                              class="options"><?=$this->escape($field->options);?></textarea>
+                                </div>
+                            </div>
+
+                            <?php } ?>
+                        <div class="centered">
+                            <input type='submit' value='Update' class=' btn btn-info'/>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span6 centered">
+
+                    </div>
+                </div>
+            </fieldset>
+
+        </form>
+
+    </div>
+    <div class="span6">
+        <div id="iframediv">
+            <div class="centered">
+                <h2>Mobile Preview</h2>
+                <iframe id="iframepreview" width="400" height="500"
+                        src="<?=$this->baseUrl();?>mobile/preview/id/<?=$this->project->id;?>"></iframe>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function preview() {
+        $.post("<?=$this->baseUrl();?>project/preview/", $("#projectform").serialize(), function (data) {
+//                document.getElementById("iframepreview").contentWindow.location.reload(true);
+            $('#iframepreview').attr('src', $('#iframepreview').attr('src'));
+
+            return false;
+
+        });
+    }
+
+    function toggleselect(e) {
+        var t = e.target.options[e.target.options.selectedIndex].value;
+        var id = e.target.id.replace("select_", "");
+        var oid = "optiongroup_" + id;
+        if (t == 'list') {
+            $("." + oid).show();
+        } else {
+            $("." + oid).hide();
+        }
+    }
+
+    function clearlink(e) {
+        var id = e.target.id.replace("clear_", "");
+        var sid = "select_" + id;
+        var nid = "name_" + id;
+        var oid = "optiongroup_" + id;
+        jQuery("#" + sid).val(1);
+        jQuery("#" + nid).val('');
+        $("." + oid).hide();
+        preview();
+    }
+
+    $(".selectbox").change(function (e) {
+        toggleselect(e)
+    });
+    $(".clearlink").click(function (e) {
+        clearlink(e)
+    });
+    $(".projectinput").blur(function (e) {
+        preview()
+    });
+    $(document).ready(preview());
+</script>

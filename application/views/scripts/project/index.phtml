@@ -1,0 +1,100 @@
+
+
+<form method="post" action="<?php echo $this->baseUrl();?>project/add" class="form-horizontal">
+    <fieldset>
+
+        <div class="row">
+        <div class="span6">
+            <h3>Active projects: <?=$this->activeCount;?></h3>
+            <h3>Projects in '<?=ucfirst(strtolower($this->plan));?>' plan: <?=$this->maxProjects;?></h3>
+            <h3>Captures this month / remaining: <?=$this->captureCountThisMonth;?> / <?=$this->maxCaptures-$this->captureCountThisMonth;?></h3>
+
+        </div>
+
+        <div class="span6 centered">
+            <?if($this->maxProjects>$this->activeCount) { ?>
+                    <input type="text" placeholder="Project name" class="input-xlarge" style="width:200px;" id="input01" name="name" value=""/>
+                    <input type='submit' value='Add new project' class=' btn btn-info'/>
+                        <?php } else { ?>
+            You are currently at your active project limit.
+            <br/>
+            Deactivate existing projects to create a new one.
+    <?php } ?>
+        </div>
+        </div>
+    </fieldset>
+
+</form>
+
+
+    <h2>Existing projects</h2>
+<table class="table table-bordered">
+<tr>
+    <th colspan="1"></th><th>Name</th>
+    <th>Contributors</th>
+    <th>Responses</th>
+    <th></th>
+</tr>
+    <?php foreach($this->projects as $p) { ?>
+    <tr>
+        <td style="width:180px;">
+            <div  class="centered">
+            <a class="" href="<?=$this->baseUrl();?>project/email/id/<?=$p->id;?>"><i class="icon-envelope"></i> Email</a>
+                &nbsp;
+            <a class="" href="<?=$this->baseUrl();?>project/edit/id/<?=$p->id;?>"><i class="icon-cog "></i> Edit</a>
+                <br/>
+                <a class="" href="<?=$this->baseUrl();?>project/export/id/<?=$p->id;?>"><i class="icon-file "></i> CSV</a>
+                &nbsp;
+                <a class="" href="<?=$this->baseUrl();?>project/exportXLS/id/<?=$p->id;?>"><i class="icon-file "></i> Excel</a>
+            </div>
+        </td>
+
+
+
+        <td>
+            <div class="projectname">
+            <?=$p->name;?>
+        </div>
+        </td>
+        <td>
+            <?php foreach($p->ownContributor as $c) { ?>
+            <?php if($p->active=='y') { ?>
+            <a  class="" target="_blank" href="<?=$this->baseUrl();?>mobile/index/project/<?=$p->hash;?>/id2/<?=$c->hash;?>">
+                <i class="icon-user"></i> Capture as</a>
+                <?php } ?>
+        <?php echo $c->email;?><br/>
+        <?php } ?>
+        </td>
+        <td>
+            <?php
+            $temp = R::find("response", " project_id=?", array($p->id));
+		$all = count($temp);
+            ?>
+            <a class=""  href="<?=$this->baseUrl();?>project/responses/id/<?=$p->id;?>">
+            <i class="icon-zoom-in"></i> View <?=$all;?> responses
+            </a>
+
+        </td>
+        <td>
+            <form class="smallform" method="post" action="<?=$this->baseUrl();?>project/del/id/<?=$p->id;?>">
+                <input type="submit" class="btn btn-danger btn-small" value="Remove"
+                    onclick="if(!confirm('Are you sure?')) { return false; }"
+                    />
+            </form>
+
+            <?php if($p->active=='y') { ?>
+            <form  class="smallform" method="post" action="<?=$this->baseUrl();?>project/deactivate/id/<?=$p->id;?>">
+                <input type="submit" class="btn btn-warning btn-small" value="Deactivate"
+                    onclick="if(!confirm('Are you sure?')) { return false; }"
+                    />
+            </form>
+                <?php } else { ?>
+        <form  class="smallform" method="post" action="<?=$this->baseUrl();?>project/reactivate/id/<?=$p->id;?>">
+            <input type="submit" class="btn btn-info btn-small" value="Reactivate" />
+                </form>
+        <?php } ?>
+
+        </td>
+    </tr>
+    <?php } ?>
+</table>

@@ -1,0 +1,8 @@
+Project: <?=$project->name;?>
+
+<?=$project->description;?>
+----------------------------
+Please complete your assignment by going to
+<?=$url;?>mobile/index/project/<?=$project->hash;?>/id2/<?=$c->hash;?>
+
+

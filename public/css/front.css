@@ -36,10 +36,7 @@ body
     height:70%;
     margin-bottom: 0px;
 }
-.topform
-{
-    margin: 0px;
-}
+
 .zend_form
 {
     float:left;
@@ -95,7 +92,7 @@ dd {
 }
 .topform
 {
-    margin-top: 4px;
+    margin-top: 8px;
 }
 .loggedin
 {

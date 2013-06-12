@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
         <title><?=$this->siteTitle();?></title>
-		<link rel="stylesheet" type="text/css" href="<?=$this->baseUrl();?>appcase/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="<?=$this->baseUrl();?>appcase/css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="<?=$this->baseUrl();?>css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="<?=$this->baseUrl();?>css/style.css"/>
         <link rel="stylesheet" type="text/css" href="<?=$this->baseUrl();?>css/front.css"/>
  	</head>
 	<body>
@@ -18,17 +18,14 @@
 <li><a href="<?=$this->baseUrl();?>"><?=$this->siteTitle();?></a></li>
 </ul>
 <?php if(!$this->loggedIn()) : ?>
-	<?php if($this->allowRegister()) : ?>
-		<form method="get" action="<?php echo $this->baseUrl();?>register" class="pull-right topform">
-		<input class="btn blacktext btn-primary" name="topbtn" type="submit" value="Register"/>
-		</form>
-		&nbsp;
-	<?php endif; ?>
-          <form method="post" action="<?php echo $this->baseUrl();?>auth" class="pull-right topform">
-            <input class="topinput input-small" type="text"  name="username" placeholder="Username">
+          <form method="post" action="<?php echo $this->baseUrl();?>auth" class="pull-right topform form-horizontal">
+            <input class=" input-small" type="text"  name="username" placeholder="Username">
 
-            <input class="topinput input-small" type="password" name="password" placeholder="Password">
-            <input class="btn blacktext btn-primary" name="topbtn" type="submit" value="Sign in"/>
+            <input class=" input-small" type="password" name="password" placeholder="Password">
+			  <?php if($this->allowRegister()) : ?>
+			 		<input class=" blacktext btn-primary" name="topbtn" type="submit" value="Register"/>
+			 	<?php endif; ?>
+            <input class=" blacktext btn-primary" name="topbtn" type="submit" value="Sign in"/>
           </form>
 
 <?php else : ?>
@@ -52,14 +49,7 @@ Welcome <?php echo $this->loggedInAs()->username; ?>
 	  <div class="container">
 		<div class="row">
 		      <div class="span4 relative">
-		      	<img class="big_iphone" width="300" height="415" src="<?=$this->baseUrl();?>appcase/img/iphone.png" alt="iphone"/>
-		      	<img class="iphone_ss" width="177" height="270" src="<?=$this->baseUrl();?>images/iphone1.png" alt="iphoness"/>
-                  <div class="row">
-                      <div class="span4 centered" style="margin-left:1.4em;">
-                          <h4>Works with Android and iOS!</h4>
-                          <img src="<?=$this->baseUrl();?>images/android-ios_small.png" width="70" alt="works on android and ios devices"/>
-                      </div>
-                  </div>
+				  &nbsp;
 		      </div>
 		      <div class="span8">
 		      	<h1>Site Name</h1>
